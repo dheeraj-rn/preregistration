@@ -1,0 +1,25 @@
+{
+  "name": "pre_registration",
+  "version": "1.0.0",
+  "description": "nitc csed project",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.15.5",
+    "mongoose": "^4.11.13",
+    "multer": "^1.3.0",
+    "path": "^0.12.7",
+    "promise": "^8.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nitc",
+    "csed"
+  ],
+  "author": "dheeraj",
+  "license": "ISC"
+}

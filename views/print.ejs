@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="screen,projection" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body bgcolor="#64ffda">
+
+    <div class="container">
+        <!-- Page Content goes here -->
+        <div class="row">
+            <div class="col s12">
+                <div class="card white">
+                    <div class="card-content z-depth-5 black-text">
+                      <font size = "5">
+                      <% if(typeof print_data !='undefined' ){ %>
+
+                        <p>Name : <%=print_data[0].name %></p>
+                        <p>Course : <%=print_data[0].course %></p>
+                        <p>Semester : <%=print_data[0].semester %></p>
+                        <p>Roll No : <%=print_data[0].rollno %></p>
+                        <p>CGPA : <%=print_data[0].cgpa %></p>
+                        <% print_data.forEach(function(print_data){ %>
+
+                          <p>Slot <%=print_data.slot.toUpperCase(); %> :  <%=print_data.scode %> <%=print_data.sname %></p>
+
+
+                          <% })
+                             } %>
+                             </font><br />
+                             <div class="center-align">
+                              <button class="btn waves-effect waves-light" onclick="printData()">Print
+                              </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+    <script>
+function printData() {
+    window.print();
+}
+</script>
+</body>
+
+</html>

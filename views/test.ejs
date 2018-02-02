@@ -1,0 +1,86 @@
+
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+
+      <div class="container">
+        <!-- Page Content goes here -->
+
+        <form action="/registered" method="post" enctype="multipart/form-data">
+          <!-- <ul class="collection">
+            <li class="collection-item">Alvin</li>
+            <li class="collection-item">Alvin</li>
+            <li class="collection-item">Alvin</li>
+            <li class="collection-item">Alvin</li>
+          </ul> -->
+          <!-- <p>
+            <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
+            <label for="filled-in-box">Filled in</label>
+          </p> -->
+
+            <% if(typeof selection !='undefined' ){
+              selection.forEach(function(selection){ %>
+                <ul class="collection">
+                  <li class="collection-item">SLOT <%= selection.slot.toUpperCase(); %> :
+                  <!--<p>-->
+
+                    <input type="checkbox" class="filled-in" id="<%= selection.scode %>" name="<%= selection.scode %>" value="<%= selection.scode %>"/>
+              <label for="<%= selection.scode %>"><%= selection.name %> <%= selection.rollno %></label>
+                <!--</p>-->
+                </li>
+                </ul>
+                <% })
+                   } %>
+
+        <!--  <div class="container-main">
+
+            <div class="row">
+                  <div class="col s12">
+                    <div class="card-panel white">
+                      <form action="/search" method="get">
+                        <div class="input-field">
+                          <input id="search" type="search" name="q" required>
+                          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                          <i class="material-icons">close</i>
+
+                        </form>
+                      </div>
+                      <span class="black-text">
+                        <% if(typeof links == 'undefined'){ %>
+                          <%= 'please enter a search query' %>
+                        <%}else if(links.length){ %>
+                          <%= links.length+' results found. '%>
+                      <%  }else { %>
+                        <%= 'no results found ' %>
+                    <%  } %>
+                      </span>
+                    </div>
+                  </div>
+                </div> -->
+
+                <button class="btn waves-effect waves-light" type="submit">Submit
+                  <i class="material-icons right">send</i>
+                </button>
+          </div>
+
+
+</form>
+
+      </div>
+
+
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+    </body>
+  </html>

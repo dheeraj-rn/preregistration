@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        input[type=number].input-number–noSpinners {
+            -moz-appearance: textfield;
+        }
+        input[type=number].input-number–noSpinners::-webkit-inner-spin-button,
+        input[type=number].input-number–noSpinners::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body bgcolor="#64ffda">
+    <div class="container center-align">
+        <div class="row">
+            <div class="col s12">
+                <div class="card white">
+                    <div class="card-content z-depth-5 black-text">
+
+                        <!-- Page Content goes here -->
+                        <div class="row">
+                            <form class="col s12" action="/student" method="post" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input placeholder="Enter name" id="name" name="name" type="text" class="validate" autocomplete="off" required pattern="[a-zA-Z\s]+">
+                                        <label for="name">
+                                            <span class="black-text">Name</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input placeholder="Enter rollno" id="rollno" name="rollno" type="text" class="validate" autocomplete="off" required pattern="(m|M|B|b)(11|12|13|14|15|16|17)\d{4}(cs|CS|ca|CA)">
+                                        <label for="rollno">
+                                            <span class="black-text">Roll No</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <select autocomplete="off" name="course" id="course" required>
+                                            <option value="" disabled selected>Choose your course</option>
+                                            <option value="btech">BTech</option>
+                                            <option value="mca">MCA</option>
+                                        </select>
+                                        <label>
+                                            <span class="black-text">Course</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input disabled value="cs" id="branch" name="branch" type="text" class="validate">
+                                        <label for="disabled">
+                                            <span class="black-text">Branch</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <select autocomplete="off" name="semester" id="semester" required>
+                                            <option value="" disabled selected>Choose your semester</option>
+                                        </select>
+                                        <label>
+                                            <span class="black-text">Semester</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input placeholder="Enter cgpa" id="cgpa" name="cgpa" type="number" min="0" max="10" step="0.1" class="validate input-number–noSpinners" autocomplete="off" required>
+                                        <label for="cgpa">
+                                            <span class="black-text">CGPA</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <button class="btn waves-effect waves-light" type="submit">Submit
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="js/materialize.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('select').material_select();
+        });
+    </script>
+    <script>
+    $(document).ready(function () {
+    $("#course").change(function () {
+        var crs = $(this).val();
+        $('select').material_select('destroy');
+        if (crs == "btech") {
+            $("#semester").html("<option value='' disabled selected>Choose your semester</option><option value='5'>5</option><option value='7'>7</option>");
+        } else if (crs == "mca") {
+            $("#semester").html("<option value='' disabled selected>Choose your semester</option><option value='3'>3</option><option value='5'>5</option>");
+          }
+        $('select').material_select();
+    });
+    });
+    </script>
+</body>
+
+</html>
