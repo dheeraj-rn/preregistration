@@ -112,11 +112,6 @@ app.post('/registered', function(req, res) {
                 //console.log('findone '+res);
                 s_name = res.sname;
 
-
-
-
-
-
                 let newRegistration = new Registered({
                     scode: selectedOptions[value],
                     sname: s_name,
@@ -179,6 +174,14 @@ app.get('/print/:rollno', function(req, res){
 
      //res.json(response);
    });
+});
+app.get('/report/:subject',function(req, res){
+  let temp=req.params.subject;
+  //console.log(temp);
+  Registered.find({scode:temp}, function(err, response){
+    console.log(response);
+    //console.log(err);
+  });
 });
 
 app.get('*', (req, res) => {
