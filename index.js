@@ -185,7 +185,7 @@ app.get('/report/',function(req, res){
     scodeArray = scode;
     Electives.find().distinct('sname', function(err, sname) {
       snameArray = sname;
-      res.render('check', {
+      res.render('reportlist', {
           scodes: scodeArray,
           snames: snameArray
       });
@@ -210,9 +210,9 @@ app.get('/report/:subject',function(req, res){
   });
 });
 
-app.get('*', (req, res) => {
+/*app.get('*', (req, res) => {
     res.redirect('/')
-});
+});*/
 
 app.listen(8081);
 console.log('listening to http://127.0.0.1:8081');;
