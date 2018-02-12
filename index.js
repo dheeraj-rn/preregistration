@@ -175,42 +175,27 @@ app.get('/print/:rollno', function(req, res){
      //res.json(response);
    });
 });
-/*app.get('/report/',function(req, res){
-  let jsonArray = [];
-  let length;
-  Electives.find().distinct('scode', function(error, scode) {
-    //console.log(scode);
-    console.log(scode.length);
-    scode.forEach(function(value) {
-      //console.log(value);
-      Electives.find({scode:value},'scode sname', function(err, sub_details){
-        //console.log(sub_details[0])
-        jsonArray.push(sub_details[0]);
-        //console.log(jsonArray);
-      });
-    });
-    console.log(jsonArray);
-  });
-  //console.log(jsonArray);
-});*/
+
 app.get('/report/',function(req, res){
-  let jsonArray = [];
+  let scodeArray;
+  let snameArray;
   let length;
   Electives.find().distinct('scode', function(error, scode) {
     //console.log(scode);
-    console.log(scode.length);
-    for(var i = 0; i < scode.length;i++){
-      //console.log(value);
-      Electives.find({scode:scode[i]},'scode sname', function(err, sub_details){
-        console.log(i,':',sub_details[0])
-        jsonArray.push(sub_details[0]);
-        //console.log(jsonArray);
+    scodeArray = scode;
+    Electives.find().distinct('sname', function(err, sname) {
+      snameArray = sname;
+      res.render('check', {
+          scodes: scodeArray,
+          snames: snameArray
       });
-    }
-    console.log(jsonArray);
+      for(var i = 0; i < sname.length;i++){
+        console.log(scodeArray[i],snameArray[i]);
+      }
+    });
   });
-  //console.log(jsonArray);
 });
+
 app.get('/report/:subject',function(req, res){
   let jsonArray = [];
   let temp=req.params.subject;
