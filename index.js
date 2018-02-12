@@ -201,12 +201,10 @@ app.get('/report/:subject',function(req, res){
   let temp=req.params.subject;
   //console.log(temp);
   Registered.find({scode:temp}, function(err, response){
-    //console.log(response);
-    response.forEach(function(value) {
-      jsonArray.push(value);
+    console.log(response);
+    res.render('reportprint', {
+        reportData: response
     });
-    console.log(jsonArray);
-    //console.log(err);
   });
 });
 
