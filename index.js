@@ -168,7 +168,7 @@ app.post('/registered', function(req, res) {
 app.get('/print/:rollno', function(req, res){
   let temp=req.params.rollno.toUpperCase();
    Registered.find({ rollno:temp}, function(err, response){
-     res.render('print', {
+     res.render('printreg', {
          print_data: response
      });
 
@@ -197,7 +197,6 @@ app.get('/report/',function(req, res){
 });
 
 app.get('/report/:subject',function(req, res){
-  let jsonArray = [];
   let temp=req.params.subject;
   //console.log(temp);
   Registered.find({scode:temp}, function(err, response){
