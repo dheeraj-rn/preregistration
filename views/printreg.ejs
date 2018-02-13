@@ -19,20 +19,22 @@
                 <div class="card white">
                     <div class="card-content z-depth-5 black-text">
                       <font size = "5">
+                        <ul class="collection">
                       <% if(typeof print_data !='undefined' ){ %>
 
-                        <p>Name : <%=print_data[0].name %></p>
-                        <p>Course : <%=print_data[0].course %></p>
-                        <p>Semester : <%=print_data[0].semester %></p>
-                        <p>Roll No : <%=print_data[0].rollno %></p>
-                        <p>CGPA : <%=print_data[0].cgpa %></p>
+                        <li class="collection-item">Name : <%=print_data[0].name %></li>
+                        <li class="collection-item">Course : <%=print_data[0].course %></li>
+                        <li class="collection-item">Semester : <%=print_data[0].semester %></li>
+                        <li class="collection-item">Roll No : <%=print_data[0].rollno %></li>
+                        <li class="collection-item">CGPA : <%=print_data[0].cgpa %></li>
                         <% print_data.forEach(function(print_data){ %>
 
-                          <p>Slot <%=print_data.slot.toUpperCase(); %> :  <%=print_data.scode %> <%=print_data.sname %></p>
+                          <li class="collection-item">Slot <%=print_data.slot.toUpperCase(); %> :  <%=print_data.scode %> <%=print_data.sname %></li>
 
 
                           <% })
                              } %>
+                             </ul>
                              </font><br />
                              <div class="center-align">
                               <button class="btn waves-effect waves-light" onclick="printData()">Print
