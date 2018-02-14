@@ -201,9 +201,16 @@ app.get('/report/:subject',function(req, res){
   //console.log(temp);
   Registered.find({scode:temp}, function(err, response){
     console.log(response);
-    res.render('reportprint', {
-        reportData: response
-    });
+      console.log('Length:', response.length);
+      if(response.length!=0){
+        res.render('reportprint', {
+            reportData: response
+        });
+      }
+      else {
+        res.render('blankreport');
+      }
+
   });
 });
 
