@@ -168,9 +168,14 @@ app.post('/registered', function(req, res) {
 app.get('/print/:rollno', function(req, res){
   let temp=req.params.rollno.toUpperCase();
    Registered.find({ rollno:temp}, function(err, response){
+     if(response.length!=0){
      res.render('printreg', {
          print_data: response
      });
+   }
+   else {
+     res.render('blankreport');
+   }
 
      //res.json(response);
    });
