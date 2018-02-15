@@ -20,10 +20,10 @@
                 <div class="card white">
                     <div class="card-content z-depth-5 black-text">
                         <form action="/registered" method="post" enctype="multipart/form-data">
-                            <% if(typeof links !='undefined' ){
-                              links.forEach(function(links){ %>
+                            <% if(typeof links !='undefined' ){ %>
+                              <% links.forEach(function(links){ %>
                                 <% let disable="disabled='disabled'" %>
-                                <ul class="collection">
+                                <ul class="collection" title="<%= links.req %>">
                                     <li class="collection-item">SLOT <%=links.slot.toUpperCase(); %> :
                                       <% if (links.count<=0 ){ %>
                                               <input name="<%= links.slot %>" type="radio" id="<%= links.scode %>" value="<%= links.scode %>" <%=disable %> />

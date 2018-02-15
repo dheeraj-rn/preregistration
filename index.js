@@ -17,7 +17,8 @@ var electivesSchema = mongodb.Schema({
     sname: String,
     sfac: String,
     count: Number,
-    cgpa: Number
+    cgpa: Number,
+    req: String
 });
 
 var registeredSchema = mongodb.Schema({
