@@ -259,8 +259,6 @@ app.get('/admin/',function(req, res){
 app.post('/admin',function(req, res){
     let adminInfo;
     adminInfo = req.body;
-    //let temp2 = studentInfo.rollno;
-    //let temp3 = temp2.toUpperCase();
     console.log(req.body);
     Login.count({ uname: adminInfo.uname, password: adminInfo.password  }, function(err, count) {
     if(count>0){
@@ -271,6 +269,21 @@ app.post('/admin',function(req, res){
     }
     });
 
+});
+
+app.get('/viewdb/',function(req, res){
+  Electives.find(function(err, result){
+	console.log(result);
+      if(result.length!=0){
+        res.render('viewdb', {
+            reportData: result
+        });
+      }
+      else {
+        res.render('blankreport');
+      }
+
+  });
 });
 
 app.get('*', (req, res) => {

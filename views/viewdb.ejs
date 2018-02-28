@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="all" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body bgcolor="#64ffda">
+
+    <div class="container">
+        <!-- Page Content goes here -->
+        <div class="row">
+            <div class="col s12">
+                <div class="card white">
+                    <div class="card-content z-depth-5 black-text">
+		      <h5 class="black-text center-align">Electives List</h5>
+                      <% if(typeof reportData !='undefined' ){ %>
+                      <table class="bordered">
+     <thead>
+       <tr>
+           <th>Course</th>
+           <th>Semester</th>
+           <th>Slot</th>
+           <th>Subject</th>
+           <th>Code</th>
+           <th>Faculty</th>
+	   <th>Min. CGPA</th>
+	   <th>No. of Seats</th>
+	   <th>Prerequisites</th>
+       </tr>
+     </thead>
+
+     <tbody>
+       <% reportData.forEach(function(reportData){ %>
+       <tr>
+         <td><%= reportData.course.toUpperCase(); %></td>
+         <td><%= reportData.sem %></td>
+         <td><%= reportData.slot.toUpperCase(); %></td>
+         <td><%= reportData.sname %></td>
+         <td><%= reportData.scode.toUpperCase(); %></td>
+         <td><%= reportData.sfac %></td>
+	 <td><%= reportData.cgpa %></td>
+	 <td><%= reportData.count %></td>
+	 <td><%= reportData.req %></td>
+       </tr>
+       <% }) %>
+     </tbody>
+   </table>
+   <% } %>
+                                <div class="center-align">
+                              <button class="btn waves-effect waves-light" onclick="printData()">Print
+                              </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+    <script>
+function printData() {
+    window.print();
+}
+</script>
+</body>
+
+</html>
