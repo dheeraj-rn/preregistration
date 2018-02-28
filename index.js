@@ -220,6 +220,25 @@ app.get('/report/:subject',function(req, res){
   });
 });
 
+app.get('/sreport/:course/:semester',function(req, res){
+  let crs = req.params.course;
+  let sem = req.params.semester;
+  console.log(crs,sem);
+  Registered.find({course:crs, semester:sem}, function(err, response){
+    console.log(response);
+      console.log('Length:', response.length);
+      if(response.length!=0){
+        res.render('semreportprint', {
+            reportData: response
+        });
+      }
+      else {
+        res.render('semblankreport');
+      }
+
+  });
+});
+
 app.get('*', (req, res) => {
     res.redirect('/')
 });
