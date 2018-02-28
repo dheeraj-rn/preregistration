@@ -39,8 +39,21 @@ var registeredSchema = mongodb.Schema({
     cgpa: String
 });
 
+var loginSchema = mongodb.Schema({
+    uname: {
+	type: String,
+	trim: true
+    },
+    password: {
+	type: String,
+	trim: true
+    }
+});
+
+
 var Electives = mongodb.model("electives", electivesSchema);
 var Registered = mongodb.model("reg_students", registeredSchema);
+var Login = mongodb.model("logins", loginSchema);
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({
@@ -237,6 +250,27 @@ app.get('/sreport/:course/:semester',function(req, res){
       }
 
   });
+});
+
+app.get('/admin/',function(req, res){
+  res.sendFile(__dirname + "/public/login.html");
+});
+
+app.post('/admin',function(req, res){
+    let adminInfo;
+    adminInfo = req.body;
+    //let temp2 = studentInfo.rollno;
+    //let temp3 = temp2.toUpperCase();
+    console.log(req.body);
+    Login.count({ uname: adminInfo.uname, password: adminInfo.password  }, function(err, count) {
+    if(count>0){
+	console.log("correct");
+    }
+    else{
+	res.sendFile(__dirname + "/public/login_2.html");
+    }
+    });
+
 });
 
 app.get('*', (req, res) => {
