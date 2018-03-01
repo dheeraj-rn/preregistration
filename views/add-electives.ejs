@@ -30,7 +30,6 @@
                   <div class="card-content z-depth-5 black-text">
 
                       <!-- Page Content goes here -->
-
                       <div class="row">
                           <form class="col s12" action="/add-data" method="post" enctype="multipart/form-data">
                             <div class="row">
@@ -89,7 +88,7 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input placeholder="Enter number of seats available" id="count" name="count" type="text" class="validate" autocomplete="off" required>
+                                    <input placeholder="Enter number of seats available" id="count" name="count" type="number" class="validate" autocomplete="off input-number–noSpinners" required>
                                     <label for="count">
                                         <span class="black-text">Number Of Seats Available</span>
                                     </label>
@@ -144,6 +143,9 @@
   });
   });
   </script>
+   <% if(typeof responseData !='undefined' ){ %>
+   <script>alert("<%= responseData %>");</script>
+   <% } %>
 </body>
 
 </html>

@@ -10,15 +10,44 @@ mongodb.connect('mongodb://127.0.0.1/project_db', {
 });
 
 var electivesSchema = mongodb.Schema({
-    course: String,
-    sem: Number,
-    slot: String,
-    scode: String,
-    sname: String,
-    sfac: String,
-    count: Number,
-    cgpa: Number,
-    req: String
+    course: {
+	type: String,
+	trim: true
+    },
+    sem: {
+	type: Number,
+	trim: true
+    },
+    slot: {
+	type: String,
+	uppercase: true,
+	trim: true
+    },
+    scode: {
+        type: String,
+        uppercase: true,
+        trim: true
+    },
+    sname: {
+        type: String,
+        trim: true
+    },
+    sfac: {
+        type: String,
+        trim: true
+    },
+    count: {
+        type: Number,
+        trim: true
+    },
+    cgpa: {
+        type: Number,
+        trim: true
+    },
+    req: {
+        type: String,
+        trim: true
+    }
 });
 
 var registeredSchema = mongodb.Schema({
@@ -284,6 +313,38 @@ app.get('/viewdb/',function(req, res){
       }
 
   });
+});
+
+app.post('/add-data',function(req, res){
+  let addElective = req.body;
+  console.log(addElective);
+  let newElective = new Electives({
+                    course: addElective.course,
+                    sem: addElective.sem,
+                    slot: addElective.slot,
+                    scode: addElective.scode,
+                    sname: addElective.sname,
+                    sfac: addElective.sfac,
+                    count: addElective.count,
+                    cgpa: addElective.cgpa,
+		    req: addElective.req
+                });
+                newElective.save(function(err, Student) {
+		    console.log(err, Student);
+                    if (err) {
+                        //res.send('Invalid Form');
+			let temp = err;
+                        res.render('add-electives', {
+                                responseData: temp
+                        });
+                    } else {
+			console.log('SAVED');
+			let temp = "Elective Saved";
+			res.render('add-electives', {
+            			responseData: temp
+        		});
+		    }
+});
 });
 
 app.get('*', (req, res) => {
