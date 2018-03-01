@@ -262,7 +262,7 @@ app.post('/admin',function(req, res){
     console.log(req.body);
     Login.count({ uname: adminInfo.uname, password: adminInfo.password  }, function(err, count) {
     if(count>0){
-	console.log("correct");
+	res.render('add-electives');
     }
     else{
 	res.sendFile(__dirname + "/public/login_2.html");

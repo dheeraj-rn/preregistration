@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body bgcolor="#64ffda">
+  <div class="container center-align">
+      <div class="row">
+        <h5 class="black-text center-align">Add Electives</h5>
+          <div class="col s12">
+              <div class="card white">
+                  <div class="card-content z-depth-5 black-text">
+
+                      <!-- Page Content goes here -->
+
+                      <div class="row">
+                          <form class="col s12" action="/add-data" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <select autocomplete="off" name="course" id="course" required>
+                                        <option value="" disabled selected>Choose your course</option>
+                                        <option value="btech">BTech</option>
+                                        <option value="mca">MCA</option>
+                                    </select>
+                                    <label>
+                                        <span class="black-text">Course</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <select autocomplete="off" name="semester" id="semester" required>
+                                        <option value="" disabled selected>Choose your semester</option>
+                                    </select>
+                                    <label>
+                                        <span class="black-text">Semester</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input placeholder="Enter subject code" id="scode" name="scode" type="text" class="validate" autocomplete="off" required>
+                                    <label for="scode">
+                                        <span class="black-text">Subject Code</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input placeholder="Enter subject name" id="sname" name="sname" type="text" class="validate" autocomplete="off" required>
+                                    <label for="sname">
+                                        <span class="black-text">Subject Name</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input placeholder="Enter slot" id="slot" name="slot" type="text" class="validate" autocomplete="off" required>
+                                    <label for="slot">
+                                        <span class="black-text">Slot</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input placeholder="Enter faculty name" id="fname" name="fname" type="text" class="validate" autocomplete="off" required>
+                                    <label for="fname">
+                                        <span class="black-text">Faculty Name</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input placeholder="Enter number of seats available" id="count" name="count" type="text" class="validate" autocomplete="off" required>
+                                    <label for="count">
+                                        <span class="black-text">Number Of Seats Available</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input placeholder="Enter minimum CGPA required" id="cgpa" name="cgpa" type="text" class="validate" autocomplete="off" required>
+                                    <label for="cgpa">
+                                        <span class="black-text">CGPA Required</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input placeholder="Enter prerequisites if any" id="req" name="req" type="text" class="validate" autocomplete="off">
+                                    <label for="req">
+                                        <span class="black-text">Prerequisites</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <button class="btn waves-effect waves-light" type="submit">Submit
+                                <i class="material-icons right">send</i>
+                            </button>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  <script type="text/javascript" src="js/materialize.js"></script>
+  <script>
+      $(document).ready(function() {
+          $('select').material_select();
+      });
+  </script>
+  <script>
+  $(document).ready(function () {
+  $("#course").change(function () {
+      var crs = $(this).val();
+      $('select').material_select('destroy');
+      if (crs == "btech") {
+          $("#semester").html("<option value='' disabled selected>Choose your semester</option><option value='5'>5</option><option value='7'>7</option>");
+      } else if (crs == "mca") {
+          $("#semester").html("<option value='' disabled selected>Choose your semester</option><option value='3'>3</option><option value='5'>5</option>");
+        }
+      $('select').material_select();
+  });
+  });
+  </script>
+</body>
+
+</html>
+
