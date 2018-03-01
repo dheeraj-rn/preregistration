@@ -9,12 +9,21 @@
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<style>
+.a1{
+margin-top:100px;
+margin-left:250px;
+}
+</style>
 </head>
 
 <body bgcolor="#64ffda">
+
+<div class="a1">
   <div class="container center-align">
       <div class="row">
-          <div class="col s6">
+          <div class="col s8">
               <div class="card white">
                   <div class="card-content z-depth-5 black-text">
 
@@ -24,13 +33,13 @@
                             <div class="row">
   <h5 class="black-text center-align">Log In</h5>
   <div class="input-field col s12">
-    <input id="uname" name="uname" type="text" class="validate" autocomplete="off">
+    <input id="uname" name="uname" type="text" class="validate" autocomplete="off" required>
     <label for="uname">Username</label>
   </div>
 </div>
       <div class="row">
   <div class="input-field col s12">
-    <input id="password" name="password" type="password" class="validate" autocomplete="off">
+    <input id="password" name="password" type="password" class="validate" autocomplete="off" required>
     <label for="password">Password</label>
   </div>
   </div>
@@ -44,6 +53,8 @@
           </div>
       </div>
   </div>
+</div>
+
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
   <script type="text/javascript" src="../js/materialize.js"></script>
