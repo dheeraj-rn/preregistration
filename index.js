@@ -89,7 +89,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 })); // for parsing application/x-www-form-urlencoded
 app.use(upload.array()); // for parsing multipart/form-data
-app.use(express.static('public'));
+//app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 app.use(function(req, res, next) {
@@ -102,7 +102,13 @@ app.use(function(req, res, next) {
 
 
 app.get("/", (req, res) => {
-    res.render('index');
+  Electives.find().distinct('sem', function(error, sem) {
+      res.render('index', {
+          semesters: sem
+      });
+
+  });
+    //res.render('index');
 });
 
 //@post get data and validate
