@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="all" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body bgcolor="#64ffda">
+
+    <div class="container center-align">
+        <!-- Page Content goes here -->
+        <div class="row">
+            <div class="col s12">
+                <div class="card white">
+                    <div class="card-content z-depth-5 black-text">
+                      <div class="row">
+                          <form class="col s12" action="/sreport1" method="post" enctype="multipart/form-data">
+                      <div class="row">
+                          <div class="input-field col s12">
+                              <select autocomplete="off" name="course" id="course" required>
+                                  <option value="" disabled selected>Choose your course</option>
+                                  <option value="btech">BTech</option>
+                                  <option value="mca">MCA</option>
+                              </select>
+                              <label>
+                                  <span class="black-text">Course</span>
+                              </label>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="input-field col s12">
+                              <select autocomplete="off" name="semester" id="semester" required>
+                                  <option value="" disabled selected>Choose your semester</option>
+                                  <% if(typeof semesters !='undefined' ){ %>
+                                    <% semesters.forEach(function(semester){ %>
+                                        <option value="<%= semester %>"><%= semester %></option>
+                                        <% })
+                                      } %>
+                              </select>
+                              <label>
+                                  <span class="black-text">Semester</span>
+                              </label>
+                          </div>
+                      </div>
+                      <button class="btn waves-effect waves-light" type="submit">Submit
+                          <i class="material-icons right">send</i>
+                      </button>
+                  </form>
+              </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('select').material_select();
+        });
+    </script>
+</body>
+
+</html>
