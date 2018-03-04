@@ -31,6 +31,17 @@
 
                       <!-- Page Content goes here -->
                       <div class="row">
+                        <nav>
+                          <div class="nav-wrapper teal accent-2">
+                            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                              <li><a class="black-text" target="_blank" href="/viewdb/">View Electives</a></li>
+                              <li><a class="black-text" target="_blank" href="badges.html">Semester-wise Report</a></li>
+                              <li><a class="black-text" target="_blank" href="/report/">Subject-wise Report</a></li>
+                            </ul>
+                          </div>
+                        </nav>
+                      </br>
+
                           <form class="col s12" action="/add-data" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="input-field col s12">
@@ -48,6 +59,14 @@
                                 <div class="input-field col s12">
                                     <select autocomplete="off" name="semester" id="semester" required>
                                         <option value="" disabled selected>Choose your semester</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
                                     </select>
                                     <label>
                                         <span class="black-text">Semester</span>
@@ -88,7 +107,7 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input placeholder="Enter number of seats available" id="count" name="count" type="number" class="validate" autocomplete="off input-number–noSpinners" required>
+                                    <input placeholder="Enter number of seats available" id="count" name="count" type="number" min="0" step="1" class="validate input-number–noSpinners" autocomplete="off" required>
                                     <label for="count">
                                         <span class="black-text">Number Of Seats Available</span>
                                     </label>
@@ -129,24 +148,9 @@
           $('select').material_select();
       });
   </script>
-  <script>
-  $(document).ready(function () {
-  $("#course").change(function () {
-      var crs = $(this).val();
-      $('select').material_select('destroy');
-      if (crs == "btech") {
-          $("#semester").html("<option value='' disabled selected>Choose your semester</option><option value='5'>5</option><option value='7'>7</option>");
-      } else if (crs == "mca") {
-          $("#semester").html("<option value='' disabled selected>Choose your semester</option><option value='3'>3</option><option value='5'>5</option>");
-        }
-      $('select').material_select();
-  });
-  });
-  </script>
    <% if(typeof responseData !='undefined' ){ %>
    <script>alert("<%= responseData %>");</script>
    <% } %>
 </body>
 
 </html>
-
