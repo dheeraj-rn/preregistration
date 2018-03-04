@@ -149,7 +149,7 @@
       });
   </script>
    <% if(typeof responseData !='undefined' ){ %>
-   <script>alert("<%= responseData %>");</script>
+   <script>Materialize.toast('<%= responseData %>', 3000)</script>
    <% } %>
 </body>
 
