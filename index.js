@@ -294,7 +294,35 @@ app.post('/sreport',function(req, res){
 });
 
 app.get('/admin/',function(req, res){
-  res.sendFile(__dirname + "/public/login.html");
+  Login.count(function(err, count) {
+  if(count>0){
+    res.render('login');
+  }
+  else {
+    res.render('setadminpass');
+  }
+});
+
+});
+
+app.post('/s_tapass',function(req, res){
+  let adminInfo = req.body;
+  let newAdmin = new Login({
+                    uname: adminInfo.uname,
+                    password: adminInfo.password
+                });
+  newAdmin.save(function(err, admin) {
+        console.log(err, admin);
+                    if (err) {
+                        res.send('Invalid Form');
+                    } else {
+      console.log('SAVED');
+      let message = "Admin User Added";
+      res.render('login', {
+                  popupData: message
+            });
+        }
+});
 });
 
 app.post('/admin',function(req, res){
@@ -306,7 +334,10 @@ app.post('/admin',function(req, res){
 	res.render('add-electives');
     }
     else{
-	res.sendFile(__dirname + "/public/login_2.html");
+      let message = "Incorrect Password!"
+	     res.render('login', {
+                   popupData: message
+             });
     }
     });
 
