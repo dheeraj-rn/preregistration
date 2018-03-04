@@ -201,7 +201,11 @@ app.post('/registered', function(req, res) {
     });
 
 
-    res.sendFile(__dirname + "/public/register.html");
+    //res.sendFile(__dirname + "/public/register.html");
+    /*res.render('register', {
+	rollno: selectedOptions.rollno
+});*/
+res.redirect('/print/'+selectedOptions.rollno);
 
 });
 
