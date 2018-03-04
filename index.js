@@ -89,7 +89,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 })); // for parsing application/x-www-form-urlencoded
 app.use(upload.array()); // for parsing multipart/form-data
-//app.use(express.static('public'));
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 app.use(function(req, res, next) {
@@ -127,7 +127,8 @@ app.post('/student', function(req, res) {
             }, function(err, result) {
                 //Electives.find({course:'btech', sem:5},'slot scode sname',function(err, result){
                 if (err) {
-                    res.end();
+		    console.log(err);
+                    res.render('blankreport');
                 } else if (result.length) {
                     res.render('electives', {
                         links: result,
@@ -135,7 +136,7 @@ app.post('/student', function(req, res) {
                         secret: studentInfo
                     });
                 } else {
-                    res.end();
+                    res.render('blankreport');
                 }
             });
 });
