@@ -266,11 +266,19 @@ app.get('/report/:subject',function(req, res){
   });
 });
 
-app.get('/sreport/:course/:semester',function(req, res){
-  let crs = req.params.course;
-  let sem = req.params.semester;
-  console.log(crs,sem);
-  Registered.find({course:crs, semester:sem}, function(err, response){
+app.get('/sreport/',function(req, res){
+  Electives.find().distinct('sem', function(error, sem) {
+      res.render('semreportselect', {
+          semesters: sem
+      });
+
+  });
+});
+
+
+app.post('/sreport',function(req, res){
+  let semData = req.body;
+  Registered.find({course:semData.course, semester:semData.semester}, function(err, response){
     console.log(response);
       console.log('Length:', response.length);
       if(response.length!=0){
