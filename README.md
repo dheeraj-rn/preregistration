@@ -50,13 +50,15 @@ You can use a reverse proxy to prevent these underlying application servers from
 
   Add the following lines in preregistration.conf
 
-  > ServerName *domain name*
-	> ServerAlias *domain name*
-	> ServerAdmin webmaster@localhost
-	> DocumentRoot /var/www/html/preregistration
-	> ProxyPreserveHost On
-	> ProxyPass / http://127.0.0.1:8081/
-	> ProxyPassReverse / http://127.0.0.1:8081/
+  ```
+  ServerName *domain name*
+	ServerAlias *domain name*
+	ServerAdmin webmaster@localhost
+	DocumentRoot /var/www/html/preregistration
+	ProxyPreserveHost On
+	ProxyPass / http://127.0.0.1:8081/
+	ProxyPassReverse / http://127.0.0.1:8081/
+  ```
 
   ```
   sudo a2dissite 000-default.conf
@@ -76,15 +78,17 @@ You can use a reverse proxy to prevent these underlying application servers from
 
   Within the server block you should have an existing location / block. Replace the contents of that block with the following configuration.
 
-  >  location / {
-  >       proxy_pass http://localhost:8081;
-  >       proxy_http_version 1.1;
-  >       proxy_set_header Upgrade $http_upgrade;
-  >       proxy_set_header Connection 'upgrade';
-  >       proxy_set_header Host $host;
-  >       proxy_cache_bypass $http_upgrade;
-  >   }
-  > }
+  ```
+    location / {
+        proxy_pass http://localhost:8081;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+  }
+  ```
 
   Make sure you didn't introduce any syntax errors by typing:
 
