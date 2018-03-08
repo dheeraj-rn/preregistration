@@ -1,12 +1,14 @@
 # PreRegistration App
 An app to simplify registation of elective subjects for students
 
+
 ### Prerequisites
 
 * [Node.js](https://nodejs.org/en/download/package-manager/)
 * [MongoDB](https://www.mongodb.com/)
 * Apache/[Nginx](https://www.nginx.com/) server
 * [PM2](http://pm2.keymetrics.io/)
+
 
 ## Installation
 
@@ -17,6 +19,7 @@ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt install -y nodejs
 sudo apt install -y build-essential
 ```
+
 
 * MongoDB
 
@@ -29,11 +32,13 @@ sudo systemctl enable mongod
 sudo service mongod start
 ```
 
+
 * Apache/Nginx as reverse proxy
 
 A reverse proxy is a type of proxy server that takes HTTP(S) requests and transparently distributes them to one or more backend servers. Reverse proxies are useful because many modern web applications process incoming HTTP requests using backend application servers which aren't meant to be accessed by users directly and often only support rudimentary HTTP features.
 
 You can use a reverse proxy to prevent these underlying application servers from being directly accessed. They can also be used to distribute the load from incoming requests to several different application servers, increasing performance at scale and providing fail-safeness. They can fill in the gaps with features the application servers don't offer, such as caching, compression, or SSL encryption too.
+
 
   1. Apache
 
@@ -46,12 +51,12 @@ You can use a reverse proxy to prevent these underlying application servers from
   Add the following lines in preregistration.conf
 
   >ServerName *domain name*
-	>ServerAlias *domain name*
-	>ServerAdmin webmaster@localhost
-	>DocumentRoot /var/www/html/preregistration
-	>ProxyPreserveHost On
-	>ProxyPass / http://127.0.0.1:8081/
-	>ProxyPassReverse / http://127.0.0.1:8081/
+	ServerAlias *domain name*
+	ServerAdmin webmaster@localhost
+	DocumentRoot /var/www/html/preregistration
+	ProxyPreserveHost On
+	ProxyPass / http://127.0.0.1:8081/
+	ProxyPassReverse / http://127.0.0.1:8081/
 
   ```
   sudo a2dissite 000-default.conf
@@ -59,6 +64,7 @@ You can use a reverse proxy to prevent these underlying application servers from
   sudo a2enmod proxy_http
   sudo apachectl restart
   ```
+
 
   2. Nginx
 
@@ -71,14 +77,14 @@ You can use a reverse proxy to prevent these underlying application servers from
   Within the server block you should have an existing location / block. Replace the contents of that block with the following configuration.
 
   >  location / {
-  >      proxy_pass http://localhost:8081;
-  >      proxy_http_version 1.1;
-  >      proxy_set_header Upgrade $http_upgrade;
-  >      proxy_set_header Connection 'upgrade';
-  >      proxy_set_header Host $host;
-  >      proxy_cache_bypass $http_upgrade;
-  >  }
-  >}
+        proxy_pass http://localhost:8081;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+  }
 
   Make sure you didn't introduce any syntax errors by typing:
 
@@ -91,6 +97,7 @@ You can use a reverse proxy to prevent these underlying application servers from
   ```
   sudo systemctl restart nginx
   ```
+
 
 * PM2
 
@@ -115,6 +122,7 @@ The last line of the resulting output will include a command that you must run w
 ```
 systemctl status pm2-sammy
 ```
+
 
 * Installing PreRegistration app
 
