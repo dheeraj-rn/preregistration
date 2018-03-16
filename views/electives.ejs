@@ -20,10 +20,20 @@
                 <div class="card white">
                     <div class="card-content z-depth-5 black-text">
                         <form action="/registered" method="post" enctype="multipart/form-data">
+                          <% let slotOld = null %>
+                          <% let slotNew = null %>
                             <% if(typeof links !='undefined' ){ %>
                               <% links.forEach(function(links){ %>
                                 <% let disable="disabled='disabled'" %>
+                                <% slotNew = links.slot.toUpperCase(); %>
+                                <% if(slotNew != slotOld){ %>
+                                  <% if(slotOld != null){ %>
+                                    </ul>
+                                    <% } %>
                                 <ul class="collection" title="<%= links.req %>">
+                              <%  } %>
+
+
                                     <li class="collection-item">SLOT <%=links.slot.toUpperCase(); %> :
                                       <% if (links.count<=0 ){ %>
                                               <input name="<%= links.slot %>" type="radio" id="<%= links.scode %>" value="<%= links.scode %>" <%=disable %> />
@@ -39,9 +49,12 @@
                                                         </label>
                                                         <% } %>
                                     </li>
+                                    <% slotOld = slotNew %>
+
+
+                                <% }) %>
                                 </ul>
-                                <% })
-                                   } %>
+                                <% } %>
                                    <input type="hidden" name="name" value="<%= secret.name %>" />
                                    <input type="hidden" name="rollno" value="<%= secret.rollno.toUpperCase(); %>" />
                                    <input type="hidden" name="course" value="<%= secret.course %>" />
@@ -61,6 +74,11 @@
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('.tooltipped').tooltip({delay: 50});
+      });
+      </script>
 </body>
 
 </html>
