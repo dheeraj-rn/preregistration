@@ -79,6 +79,29 @@
         $('.tooltipped').tooltip({delay: 50});
       });
       </script>
+      <% let curSlot = null %>
+      <% if(typeof links !='undefined' ){ %>
+        <% links.forEach(function(links){ %>
+          <% if( curSlot != links.slot ){ %>
+            <script>
+            var allRadios = document.getElementsByName('<%= links.slot %>');
+            var booRadio;
+            var x = 0;
+            for(x = 0; x < allRadios.length; x++){
+              allRadios[x].onclick = function(){
+                if(booRadio == this){
+                  this.checked = false;
+                  booRadio = null;
+                }else{
+                  booRadio = this;
+                }
+              };
+            }
+            </script>
+            <% curSlot = links.slot %>
+        <% } %>
+        <% }) %>
+        <% } %>
 </body>
 
 </html>
