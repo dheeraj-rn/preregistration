@@ -79,10 +79,17 @@ var loginSchema = mongodb.Schema({
     }
 });
 
+var restrictionsSchema = mongodb.Schema({
+  course: String,
+  sem: Number,
+  maxSelection: Number
+});
+
 
 var Electives = mongodb.model("electives", electivesSchema);
 var Registered = mongodb.model("reg_students", registeredSchema);
 var Login = mongodb.model("logins", loginSchema);
+var Restrictions = mongodb.model("restrictions", restrictionsSchema);
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({
@@ -116,11 +123,17 @@ app.post('/student', function(req, res) {
     //console.log(studentInfo.course);
     //console.log(studentInfo.semester);
     let studentInfo;
+    var maxElective;
     studentInfo = req.body;
     let temp2 = studentInfo.rollno;
     let temp3 = temp2.toUpperCase();
     console.log(temp3);
-
+    Restrictions.find({ course: studentInfo.course, sem: studentInfo.semester }, function(req, max) {
+      if(max.length == 0){
+        res.render('setconstrain');
+      }
+      else {
+        maxElective = max[0].maxSelection;
             Electives.find({
                 course: studentInfo.course,
                 sem: studentInfo.semester
@@ -130,14 +143,18 @@ app.post('/student', function(req, res) {
 		    console.log(err);
                     res.render('blankreport');
                 } else if (result.length) {
+                  console.log('Max:',max);
                     res.render('electives', {
                         links: result,
                         scgpa: studentInfo.cgpa,
-                        secret: studentInfo
+                        secret: studentInfo,
+                        max: maxElective
                     });
                 } else {
                     res.render('blankreport');
                 }
+            });
+          }
             });
 });
 
@@ -147,6 +164,13 @@ app.post('/registered', function(req, res) {
     let s_name;
     let s_rollno;
     console.log(selectedOptions);
+    let length = Object.keys(selectedOptions).length
+    length = (length - 5);
+    Restrictions.find({ course: selectedOptions.course, sem: selectedOptions.semester }, function(req, max) {
+      if(max.length == 0){
+        res.render('setconstrain');
+      }
+      else if(max[0].maxSelection >= length){
     let allSlot = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
     allSlot.forEach(function(value) {
         //console.log(selectedOptions[value]);
@@ -177,7 +201,6 @@ app.post('/registered', function(req, res) {
                     console.log('electives count '+res.count);
                     if (res.count > 0) {
 
-
                 newRegistration.save(function(err, Student) {
                     if (err) {
                         res.send('Invalid Form');
@@ -198,7 +221,7 @@ app.post('/registered', function(req, res) {
                 });
               }
               else {
-                res.sendFile(__dirname + "/public/error.html");
+                res.render('blankreport');
               }
             });
             });
@@ -213,6 +236,10 @@ app.post('/registered', function(req, res) {
 	rollno: selectedOptions.rollno
 });*/
 res.redirect('/print/'+selectedOptions.rollno);
+} else {
+  res.render('maxelective');
+}
+});
 
 });
 

@@ -19,6 +19,9 @@
             <div class="col s12">
                 <div class="card white">
                     <div class="card-content z-depth-5 black-text">
+                      <% if(typeof max !='undefined' ){ %>
+                        <p class="center-align"><b>Maximum Electives You Can Select: <%= max %></b></p>
+                        <% } %>
                         <form action="/registered" method="post" enctype="multipart/form-data">
                           <% let slotOld = null %>
                           <% let slotNew = null %>
