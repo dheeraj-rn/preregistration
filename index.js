@@ -134,6 +134,11 @@ app.post('/student', function(req, res) {
       }
       else {
         maxElective = max[0].maxSelection;
+        Registered.count({ rollno: temp3 }, function(err, count) {
+        console.log('If Registered:',count);
+        if (count > 0) {
+            res.redirect('/print/'+temp3);
+        } else {
             Electives.find({
                 course: studentInfo.course,
                 sem: studentInfo.semester
@@ -154,6 +159,8 @@ app.post('/student', function(req, res) {
                     res.render('blankreport');
                 }
             });
+          }
+        });
           }
             });
 });
