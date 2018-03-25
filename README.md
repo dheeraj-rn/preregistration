@@ -6,7 +6,7 @@ An app to simplify registation of elective subjects for students
 
 * [Node.js](https://nodejs.org/en/download/package-manager/)
 * [MongoDB](https://www.mongodb.com/)
-* Apache/[Nginx](https://www.nginx.com/) server
+* Apache server
 * [PM2](http://pm2.keymetrics.io/)
 
 
@@ -33,7 +33,7 @@ sudo service mongod start
 ```
 
 
-* Apache/Nginx as reverse proxy
+* Apache as reverse proxy
 
 A reverse proxy is a type of proxy server that takes HTTP(S) requests and transparently distributes them to one or more backend servers. Reverse proxies are useful because many modern web applications process incoming HTTP requests using backend application servers which aren't meant to be accessed by users directly and often only support rudimentary HTTP features.
 
@@ -65,41 +65,6 @@ You can use a reverse proxy to prevent these underlying application servers from
   sudo a2ensite preregistration.conf
   sudo a2enmod proxy_http
   sudo apachectl restart
-  ```
-
-
-  2. Nginx
-
-  ```
-  sudo apt install -y nginx
-  sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bk
-  sudo nano /etc/nginx/sites-available/default
-  ```
-
-  Within the server block you should have an existing location / block. Replace the contents of that block with the following configuration.
-
-  ```
-    location / {
-        proxy_pass http://localhost:8081;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
-    }
-  }
-  ```
-
-  Make sure you didn't introduce any syntax errors by typing:
-
-  ```
-  sudo nginx -t
-  ```
-
-  Next, restart Nginx:
-
-  ```
-  sudo systemctl restart nginx
   ```
 
 
