@@ -109,13 +109,13 @@ app.use(function(req, res, next) {
 
 
 app.get("/", (req, res) => {
-  Electives.find().distinct('sem', function(error, sem) {
+/*  Electives.find().distinct('sem', function(error, sem) {
       res.render('index', {
           semesters: sem
       });
 
-  });
-    //res.render('index');
+  });*/
+    res.render('index');
 });
 
 //@post get data and validate
