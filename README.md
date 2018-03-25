@@ -83,13 +83,13 @@ Applications that are running under PM2 will be restarted automatically if the a
 The startup subcommand generates and configures a startup script to launch PM2 and its managed processes on server boots:
 
 ```
-pm2 startup systemd
+sudo pm2 startup systemd
 ```
 
 The last line of the resulting output will include a command that you must run with superuser privileges. Run the command that was generated to set PM2 up to start on boot. This will create a systemd unit which runs pm2 for your user on boot. You can check the status of the systemd unit with systemctl:
 
 ```
-systemctl status pm2-sammy
+systemctl status pm2-root
 ```
 
 
@@ -101,5 +101,48 @@ cd preregistration
 npm install
 cd ..
 sudo mv preregistration /var/www/html/
-pm2 start /var/www/html/preregistration/index.js --name "preregistration"
+sudo pm2 start /var/www/html/preregistration/index.js -i 0 --name "preregistration"
+```
+
+
+* Stop PreRegistration app
+
+```
+sudo pm2 stop 0
+OR
+sudo pm2 stop preregistration
+```
+
+
+* Start PreRegistration app
+
+```
+sudo pm2 start 0
+OR
+sudo pm2 start preregistration
+```
+
+
+* Restart PreRegistration app
+
+```
+sudo pm2 restart 0
+OR
+sudo pm2 restart preregistration
+```
+
+
+* Check Logs
+
+```
+sudo pm2 logs 0
+OR
+sudo pm2 logs preregistration
+```
+
+
+* Monitor CPU and Memory usage
+
+```
+sudo pm2 monit
 ```
