@@ -168,8 +168,9 @@ app.post('/registered', function(req, res) {
     let s_name;
     let s_rollno;
     console.log(selectedOptions);
-    let length = Object.keys(selectedOptions).length
-    length = (length - 5);
+    let length = Object.keys(selectedOptions).length;
+    console.log('Elective Page Data Length:',length);
+    length = (length - 4);
     Restrictions.find({ course: selectedOptions.course, sem: selectedOptions.semester }, function(req, max) {
       if(max.length == 0){
         res.render('setconstrain');
@@ -202,7 +203,7 @@ app.post('/registered', function(req, res) {
 
                 Electives.findOne({scode: selectedOptions[value]}, 'count', function(req, res) {
                     console.log('electives count '+res.count);
-                    if (res.count > 0) {
+//                    if (res.count > 0) {
 
                 newRegistration.save(function(err, Student) {
                     if (err) {
@@ -222,10 +223,10 @@ app.post('/registered', function(req, res) {
                     }
 
                 });
-              }
+/*              }
               else {
                 res.render('blankreport');
-              }
+              } */
             });
             });
           }
