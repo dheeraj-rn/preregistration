@@ -33,11 +33,14 @@
                                   <% if(slotOld != null){ %>
                                     </ul>
                                     <% } %>
-                                <ul class="collection" title="<%= links.req %>">
+                                <ul class="collection">
                               <%  } %>
 
-
-                                    <li class="collection-item">SLOT <%=links.slot.toUpperCase(); %> :
+                              <% if(links.req){ %>
+                                    <li class="collection-item tooltipped" data-position="right" data-delay="50" data-tooltip="<%= links.req %>">SLOT <%=links.slot.toUpperCase(); %> :
+                                    <% } else { %>
+                                      <li class="collection-item">SLOT <%=links.slot.toUpperCase(); %> :
+                                        <% } %>
                                       <% if (links.count<=0 ){ %>
                                               <input name="<%= links.slot %>" type="radio" id="<%= links.scode %>" value="<%= links.scode %>" <%=disable %> />
                                               <label for="<%= links.scode %>"><%= links.scode.toUpperCase(); %> <%= links.sname %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Available Seats: <%= links.count %></label>
