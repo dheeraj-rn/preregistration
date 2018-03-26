@@ -44,9 +44,6 @@
                                       <% if (links.count<=0 ){ %>
                                               <input name="<%= links.slot %>" type="radio" id="<%= links.scode %>" value="<%= links.scode %>" <%=disable %> />
                                               <label for="<%= links.scode %>"><%= links.scode.toUpperCase(); %> <%= links.sname %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Available Seats: <%= links.count %></label>
-                                              <% } else if (scgpa < links.cgpa) { %>
-                                                <input name="<%= links.slot %>" type="radio" id="<%= links.scode %>" value="<%= links.scode %>" <%=disable %> />
-                                                <label for="<%= links.scode %>"><%= links.scode.toUpperCase(); %> <%= links.sname %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Required CGPA: <%= links.cgpa %></label>
                                               <% } else { %>
                                                   <input name="<%= links.slot %>" type="radio" id="<%= links.scode %>" value="<%= links.scode %>" />
                                                       <label for="<%= links.scode %>">
@@ -65,7 +62,7 @@
                                    <input type="hidden" name="rollno" value="<%= secret.rollno.toUpperCase(); %>" />
                                    <input type="hidden" name="course" value="<%= secret.course %>" />
                                    <input type="hidden" name="semester" value="<%= secret.semester %>" />
-                                   <input type="hidden" name="cgpa" value="<%= secret.cgpa %>" />
+                                   <!--<input type="hidden" name="cgpa" value="<%= secret.cgpa %>" />-->
                                    <div class="center-align">
                                     <button class="btn waves-effect waves-light" type="submit">Register
                                     </button>

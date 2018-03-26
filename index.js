@@ -40,10 +40,6 @@ var electivesSchema = mongodb.Schema({
         type: Number,
         trim: true
     },
-    cgpa: {
-        type: Number,
-        trim: true
-    },
     req: {
         type: String,
         trim: true
@@ -64,8 +60,7 @@ var registeredSchema = mongodb.Schema({
         trim: true
     },
     course: String,
-    semester: String,
-    cgpa: String
+    semester: String
 });
 
 var loginSchema = mongodb.Schema({
@@ -154,7 +149,6 @@ app.post('/student', function(req, res) {
                   console.log('Max:',max);
                     res.render('electives', {
                         links: result,
-                        scgpa: studentInfo.cgpa,
                         secret: studentInfo,
                         max: maxElective
                     });
@@ -203,8 +197,7 @@ app.post('/registered', function(req, res) {
                     name: selectedOptions.name,
                     rollno: selectedOptions.rollno,
                     course: selectedOptions.course,
-                    semester: selectedOptions.semester,
-                    cgpa: selectedOptions.cgpa
+                    semester: selectedOptions.semester
                 });
 
                 Electives.findOne({scode: selectedOptions[value]}, 'count', function(req, res) {
@@ -413,8 +406,7 @@ app.post('/add-data',function(req, res){
                     sname: addElective.sname,
                     sfac: addElective.sfac,
                     count: addElective.count,
-                    cgpa: addElective.cgpa,
-		    req: addElective.req
+		                req: addElective.req
                 });
                 newElective.save(function(err, Student) {
 		    console.log(err, Student);
