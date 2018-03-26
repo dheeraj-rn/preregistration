@@ -120,15 +120,18 @@ app.get("/", (req, res) => {
 
 //@post get data and validate
 app.post('/student', function(req, res) {
-    //console.log(studentInfo.course);
-    //console.log(studentInfo.semester);
     let studentInfo;
     var maxElective;
     studentInfo = req.body;
     let temp2 = studentInfo.rollno;
     let temp3 = temp2.toUpperCase();
-    console.log(temp3);
+    console.log('Name:',studentInfo.name);
+    console.log('Roll No:',temp3);
+    console.log('Programme:',studentInfo.course);
+    console.log('Semester:',studentInfo.semester);
+
     Restrictions.find({ course: studentInfo.course, sem: studentInfo.semester }, function(req, max) {
+      console.log('max:',max)
       if(max.length == 0){
         res.render('setconstrain');
       }
