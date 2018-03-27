@@ -401,7 +401,7 @@ app.post('/add-data',function(req, res){
   console.log(addElective);
   let newElective = new Electives({
                     course: addElective.course,
-                    sem: addElective.sem,
+                    sem: addElective.semester,
                     slot: addElective.slot,
                     scode: addElective.scode,
                     sname: addElective.sname,
