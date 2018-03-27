@@ -143,10 +143,10 @@ app.post('/student', function(req, res) {
             }, function(err, result) {
                 //Electives.find({course:'btech', sem:5},'slot scode sname',function(err, result){
                 if (err) {
-		    console.log(err);
+		                console.log(err);
                     res.render('blankreport');
                 } else if (result.length) {
-                  console.log('Max:',max);
+                  //console.log('Max:',max);
                     res.render('electives', {
                         links: result,
                         secret: studentInfo,
@@ -184,7 +184,7 @@ app.post('/registered', function(req, res) {
             //console.log('if');
 
             Registered.count({ rollno: selectedOptions.rollno, slot: value  }, function(err, count) {
-                console.log(count);
+                //console.log(count);
                 if (count == 0) {
 
             Electives.findOne({ scode: selectedOptions[value], slot: value }, 'sname', function(req, res) {
@@ -210,13 +210,13 @@ app.post('/registered', function(req, res) {
                         res.send('Invalid Form');
                     } else {
                         console.log('SAVED');
-                        Electives.findOne({scode: selectedOptions[value]}, 'scode count', function(req, res) {
+                        Electives.findOne({scode: selectedOptions[value], course: selectedOptions.course, sem: selectedOptions.semester}, 'scode count', function(req, res) {
                             console.log('electives count '+res.count);
                             let temp = res.count;
                             temp = temp - 1;
 			console.log('temp = ',temp);
 			console.log('scode = ',selectedOptions[value]);
-                            Electives.update({scode: selectedOptions[value]}, {count: temp}, {multi: true}, function(err, out) {
+                            Electives.update({scode: selectedOptions[value], course: selectedOptions.course, sem: selectedOptions.semester}, {count: temp}, {multi: true}, function(err, out) {
 				console.log(out);
 			});
                         });
