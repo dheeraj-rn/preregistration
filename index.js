@@ -140,7 +140,7 @@ app.post('/student', function(req, res) {
             Electives.find({
                 course: studentInfo.course,
                 sem: studentInfo.semester
-            }, function(err, result) {
+            },null,{sort: {slot: 1}}, function(err, result) {
                 //Electives.find({course:'btech', sem:5},'slot scode sname',function(err, result){
                 if (err) {
 		                console.log(err);
