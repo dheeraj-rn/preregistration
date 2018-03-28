@@ -176,7 +176,8 @@ app.post('/registered', function(req, res) {
         res.render('setconstrain');
       }
       else if(max[0].maxSelection >= length){
-    let allSlot = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    //let allSlot = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    let allSlot = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'A+', 'H', 'H+', 'E+', 'F+', 'G+', 'C+', 'B+', 'E@', 'G@', 'D+', 'P', 'Q', 'R', 'S', 'T'];
     allSlot.forEach(function(value) {
         //console.log(selectedOptions[value]);
         //console.log('for each loop');
