@@ -101,7 +101,7 @@ cd preregistration
 npm install
 cd ..
 sudo mv preregistration /var/www/html/
-sudo pm2 start /var/www/html/preregistration/index.js -i 0 --name "preregistration"
+sudo pm2 start /var/www/html/preregistration/index.js --name "preregistration"
 ```
 
 
