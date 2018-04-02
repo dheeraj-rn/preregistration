@@ -46,11 +46,11 @@
                                       <li class="collection-item">SLOT <%=links.slot.toUpperCase(); %> :
                                         <% } %>
                                       <% if (links.count<=0 ){ %>
-                                              <input name="<%= links.slot %>" type="radio" id="<%= links.scode %>" value="<%= links.scode %>" <%=disable %> />
-                                              <label for="<%= links.scode %>"><%= links.scode.toUpperCase(); %> <%= links.sname %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Available Seats: <%= links.count %></label>
+                                              <input name="<%= links.slot %>" type="radio" id="<%= links.scode+links.slot %>" value="<%= links.scode %>" <%=disable %> />
+                                              <label for="<%= links.scode+links.slot %>"><%= links.scode.toUpperCase(); %> <%= links.sname %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Available Seats: <%= links.count %></label>
                                               <% } else { %>
-                                                  <input name="<%= links.slot %>" type="radio" id="<%= links.scode %>" value="<%= links.scode %>" />
-                                                      <label for="<%= links.scode %>">
+                                                  <input name="<%= links.slot %>" type="radio" id="<%= links.scode+links.slot %>" value="<%= links.scode %>" />
+                                                      <label for="<%= links.scode+links.slot %>">
                                                           <span class="black-text"><%= links.scode.toUpperCase(); %> <%= links.sname %></span>
                                                           <span class="blue-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Available Seats: <%= links.count %></span>
                                                         </label>
