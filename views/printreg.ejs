@@ -18,6 +18,12 @@
             <div class="col s12">
                 <div class="card white">
                     <div class="card-content z-depth-5 black-text">
+                      <div class="valign-wrapper">
+                        <p id="time"></p>
+                      </div>
+                      <script>
+                      document.getElementById("time").innerHTML = Date();
+                    </script>
                       <font size = "5">
                         <ul class="collection">
                       <% if(typeof print_data !='undefined' ){ %>
