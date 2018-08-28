@@ -51,10 +51,7 @@ You can use a reverse proxy to prevent these underlying application servers from
   Add the following lines in preregistration.conf
 
   ```
-  ServerName *domain name*
-	ServerAlias *domain name*
 	ServerAdmin webmaster@localhost
-	DocumentRoot /var/www/html/preregistration
 	ProxyPreserveHost On
 	ProxyPass / http://127.0.0.1:8081/
 	ProxyPassReverse / http://127.0.0.1:8081/
@@ -99,50 +96,48 @@ systemctl status pm2-root
 git clone https://github.com/dheeraj-rn/preregistration.git
 cd preregistration
 npm install
-cd ..
-sudo mv preregistration /var/www/html/
-sudo pm2 start /var/www/html/preregistration/index.js --name "preregistration"
+pm2 start index.js --name "preregistration"
 ```
 
 
 * Stop PreRegistration app
 
 ```
-sudo pm2 stop 0
+pm2 stop 0
 OR
-sudo pm2 stop preregistration
+pm2 stop preregistration
 ```
 
 
 * Start PreRegistration app
 
 ```
-sudo pm2 start 0
+pm2 start 0
 OR
-sudo pm2 start preregistration
+pm2 start preregistration
 ```
 
 
 * Restart PreRegistration app
 
 ```
-sudo pm2 restart 0
+pm2 restart 0
 OR
-sudo pm2 restart preregistration
+pm2 restart preregistration
 ```
 
 
 * Check Logs
 
 ```
-sudo pm2 logs 0
+pm2 logs 0
 OR
-sudo pm2 logs preregistration
+pm2 logs preregistration
 ```
 
 
 * Monitor CPU and Memory usage
 
 ```
-sudo pm2 monit
+pm2 monit
 ```
