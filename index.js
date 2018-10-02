@@ -5,81 +5,14 @@ var path = require('path');
 var multer = require('multer');
 var upload = multer();
 var mongodb = require('mongoose');
+var electivesSchema = require('./schemas/electivesSchema');
+var registeredSchema = require('./schemas/registeredSchema');
+var loginSchema = require('./schemas/loginSchema');
+var restrictionsSchema = require('./schemas/restrictionsSchema');
+
 mongodb.connect('mongodb://127.0.0.1/project_db', {
     useMongoClient: true
 });
-
-var electivesSchema = mongodb.Schema({
-    course: {
-	type: String,
-	trim: true
-    },
-    sem: {
-	type: Number,
-	trim: true
-    },
-    slot: {
-	type: String,
-	uppercase: true,
-	trim: true
-    },
-    scode: {
-        type: String,
-        uppercase: true,
-        trim: true
-    },
-    sname: {
-        type: String,
-        trim: true
-    },
-    sfac: {
-        type: String,
-        trim: true
-    },
-    count: {
-        type: Number,
-        trim: true
-    },
-    req: {
-        type: String,
-        trim: true
-    }
-});
-
-var registeredSchema = mongodb.Schema({
-    scode: String,
-    sname: String,
-    slot: String,
-    name: {
-        type: String,
-        trim: true
-    },
-    rollno: {
-        type: String,
-        uppercase: true,
-        trim: true
-    },
-    course: String,
-    semester: String
-});
-
-var loginSchema = mongodb.Schema({
-    uname: {
-	type: String,
-	trim: true
-    },
-    password: {
-	type: String,
-	trim: true
-    }
-});
-
-var restrictionsSchema = mongodb.Schema({
-  course: String,
-  sem: Number,
-  maxSelection: Number
-});
-
 
 var Electives = mongodb.model("electives", electivesSchema);
 var Registered = mongodb.model("reg_students", registeredSchema);
