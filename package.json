@@ -4,9 +4,9 @@
   "description": "nitc csed project",
   "main": "index.js",
   "dependencies": {
-    "body-parser": "^1.18.2",
+    "body-parser": "^1.20.1",
     "ejs": "^2.5.7",
-    "express": "^4.15.5",
+    "express": "^4.18.2",
     "mongoose": "^4.11.13",
     "multer": "^1.3.0",
     "path": "^0.12.7",
